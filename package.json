@@ -1,0 +1,38 @@
+{
+  "name": "earnusdc-frontend",
+  "version": "1.0.0",
+  "description": "High-yield USDC earning platform on Base Network",
+  "private": true,
+  "scripts": {
+    "start": "npx http-server -p 3000",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "build": "mkdir -p dist && cp -r index.html src assets dist/"
+  },
+  "dependencies": {
+    "ethers": "^6.8.1"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.0.0",
+    "http-server": "^14.1.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/[USERNAME]/earnusdc-frontend.git"
+  },
+  "keywords": [
+    "defi",
+    "usdc",
+    "base-network",
+    "yield"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/[USERNAME]/earnusdc-frontend/issues"
+  },
+  "homepage": "https://[USERNAME].github.io/earnusdc-frontend"
+}
