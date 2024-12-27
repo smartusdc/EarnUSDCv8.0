@@ -6,10 +6,6 @@ if (!window.ethers) {
 const { ethers } = window;
 
 class ContractService {
-    // 既存の実装
-}
-
-class ContractService {
     constructor() {
         this.provider = null;
         this.signer = null;
