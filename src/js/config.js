@@ -6,7 +6,7 @@ export const CONFIG = {
 
     NETWORK: {
         BASE: {
-            chainId: 8453,
+            chainId: '0x2105',  // Base Mainnet (8453)
             chainName: 'Base',
             nativeCurrency: {
                 name: 'ETH',
