@@ -4,6 +4,7 @@ import { eventService } from './events.js';
 import { stateService } from './state.js';
 import { transactionService } from './transactions.js';
 import { uiService } from './ui.js';
+import { BrowserProvider } from 'ethers';
 
 class App {
     constructor() {
@@ -23,7 +24,7 @@ class App {
             await this.initializeProvider();
             
             // UIの初期化
-            uiService.initialize();
+            await uiService.initialize();
             
             // イベントリスナーの設定
             this.setupEventListeners();
@@ -34,10 +35,12 @@ class App {
             this.isInitialized = true;
         } catch (error) {
             console.error('App initialization failed:', error);
-            uiService.showNotification(
-                'Failed to initialize application',
-                'error'
-            );
+            if (uiService.isInitialized) {
+                uiService.showNotification(
+                    'Failed to initialize application',
+                    'error'
+                );
+            }
         }
     }
 
@@ -48,7 +51,7 @@ class App {
     }
 
     async initializeProvider() {
-this.provider = new ethers.Web3Provider(window.ethereum); // ここを修正後
+        this.provider = new BrowserProvider(window.ethereum);
         eventService.startProviderEvents(window.ethereum);
     }
 
@@ -195,8 +198,12 @@ document.addEventListener('DOMContentLoaded', () => {
 // グローバルなエラーハンドリング
 window.addEventListener('unhandledrejection', (event) => {
     console.error('Unhandled promise rejection:', event.reason);
-    uiService.showNotification(
-        'An unexpected error occurred',
-        'error'
-    );
+    if (uiService.isInitialized) {
+        uiService.showNotification(
+            'An unexpected error occurred',
+            'error'
+        );
+    }
 });
+
+export default app;
