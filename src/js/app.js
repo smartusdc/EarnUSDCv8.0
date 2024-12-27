@@ -48,7 +48,7 @@ class App {
     }
 
     async initializeProvider() {
-        this.provider = new ethers.BrowserProvider(window.ethereum);
+this.provider = new ethers.Web3Provider(window.ethereum); // ここを修正後
         eventService.startProviderEvents(window.ethereum);
     }
 
