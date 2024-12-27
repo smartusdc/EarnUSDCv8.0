@@ -1,6 +1,13 @@
-import { ethers } from 'ethers';
 import { CONFIG, ERRORS } from './config.js';
 import EarnUSDCABI from '../abis/EarnUSDC.json';
+if (!window.ethers) {
+    throw new Error('Ethers library not loaded');
+}
+const { ethers } = window;
+
+class ContractService {
+    // 既存の実装
+}
 
 class ContractService {
     constructor() {
