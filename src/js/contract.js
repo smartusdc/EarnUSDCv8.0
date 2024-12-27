@@ -1,4 +1,6 @@
 import { CONFIG, ERRORS } from './config.js';
+
+// ABIを非同期でロードする関数
 async function loadEarnUSDCABI() {
     const response = await fetch('../abis/EarnUSDC.json');
     const EarnUSDCABI = await response.json();
@@ -6,7 +8,7 @@ async function loadEarnUSDCABI() {
 }
 
 if (!window.ethers) {
-    throw new Error('Ethers library not loaded');
+    throw new Error('Ethersライブラリが読み込まれていません');
 }
 const { ethers } = window;
 
@@ -19,14 +21,19 @@ class ContractService {
         this.currentAccount = null;
     }
 
+    // ABIを非同期で読み込んでからコントラクトを初期化
     async initialize(provider, signer) {
         this.provider = provider;
         this.signer = signer;
         this.currentAccount = await signer.getAddress();
 
+        // ABIを非同期で読み込む
+        const EarnUSDCABI = await loadEarnUSDCABI();
+
+        // コントラクトをABIを使って初期化
         this.earnContract = new ethers.Contract(
             CONFIG.CONTRACTS.EARN_USDC,
-            EarnUSDCABI.abi,
+            EarnUSDCABI.abi, // ロードしたABIを使用
             signer
         );
 
