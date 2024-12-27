@@ -4,7 +4,6 @@ import { eventService } from './events.js';
 import { stateService } from './state.js';
 import { transactionService } from './transactions.js';
 import { uiService } from './ui.js';
-import * as ethers from 'ethers';  // ethersの正しいインポート方法
 
 class App {
     constructor() {
@@ -51,7 +50,8 @@ class App {
     }
 
     async initializeProvider() {
-        this.provider = new ethers.BrowserProvider(window.ethereum);  // ethers v6 の正しい使用方法
+        // グローバルスコープのethersを使用
+        this.provider = new window.ethers.providers.Web3Provider(window.ethereum);
         eventService.startProviderEvents(window.ethereum);
     }
 
