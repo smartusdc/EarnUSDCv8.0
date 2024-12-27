@@ -144,7 +144,10 @@
     </div>
 
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.8.1/ethers.umd.min.js"></script>
+<script type="module">
+  import { ethers } from 'https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.esm.min.js';
+  window.ethers = ethers;
+</script>
     <script type="module" src="src/js/config.js"></script>
     <script type="module" src="src/js/contract.js"></script>
     <script type="module" src="src/js/events.js"></script>
