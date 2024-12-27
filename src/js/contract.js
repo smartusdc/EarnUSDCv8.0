@@ -1,5 +1,10 @@
 import { CONFIG, ERRORS } from './config.js';
-import EarnUSDCABI from '../abis/EarnUSDC.json';
+async function loadEarnUSDCABI() {
+    const response = await fetch('../abis/EarnUSDC.json');
+    const EarnUSDCABI = await response.json();
+    return EarnUSDCABI;
+}
+
 if (!window.ethers) {
     throw new Error('Ethers library not loaded');
 }
