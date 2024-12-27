@@ -2,7 +2,7 @@ import { CONFIG, ERRORS } from './config.js';
 
 // ABIを非同期でロードする関数
 async function loadEarnUSDCABI() {
-    const response = await fetch('../abis/EarnUSDC.json');
+    const response = await fetch('https://smartusdc.github.io/EarnUSDCv8.0/src/abis/EarnUSDC.json');
     const EarnUSDCABI = await response.json();
     return EarnUSDCABI;
 }
