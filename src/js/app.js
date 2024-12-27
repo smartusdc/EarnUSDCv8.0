@@ -68,8 +68,11 @@ class App {
 
     setupEventListeners() {
         // ウォレット接続ボタン
-        document.getElementById('connectWallet')
-            .addEventListener('click', () => this.connectWallet());
+      document.getElementById('connectWallet')
+    .addEventListener('click', async () => {
+        await this.connectWallet();
+    });
+
 
         // ウォレット切断ボタン
         document.getElementById('disconnectWallet')
